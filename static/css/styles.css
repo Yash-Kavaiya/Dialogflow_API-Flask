@@ -234,6 +234,268 @@ button:disabled {
         width: calc(100% - 2rem);
         right: 1rem;
         left: 1rem;
-        max-width: none;
+        max-width: none;a/* Enhanced styles for Google Assistant Chatbot */
+
+        /* Main animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.4);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(66, 133, 244, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(66, 133, 244, 0);
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes typing {
+            0%, 100% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+        }
+        
+        /* Element animations */
+        #chatbot-window {
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        #chatbot-icon {
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        
+        #voice-popup {
+            animation: zoomIn 0.3s ease-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            z-index: 20;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Voice popup overlay */
+        #voice-popup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 15;
+        }
+        
+        .voice-popup {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .typing-indicator::after {
+            content: '.';
+            animation: typing 1.5s infinite;
+        }
+        
+        /* Custom scrollbar */
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #4285F4;
+            border-radius: 10px;
+        }
+        
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #3367d6;
+        }
+        
+        /* Message bubbles */
+        .bg-blue-100 {
+            background-color: #E8F0FE;
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .bg-white {
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .bg-blue-100:hover, .bg-white:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Voice recording animation */
+        .recording-animation {
+            animation: pulse 1.5s infinite;
+        }
+        
+        .waveform-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: linear-gradient(to right, #f1f5fe, #e8f0fe, #f1f5fe);
+        }
+        
+        .waveform {
+            position: relative;
+        }
+        
+        .waveform-path {
+            stroke: #4285F4;
+            stroke-width: 2px;
+            fill: none;
+            transition: d 0.2s ease;
+        }
+        
+        /* Input focus states */
+        #chat-input:focus {
+            border-color: #4285F4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+            outline: none;
+        }
+        
+        button {
+            transition: all 0.2s ease;
+            outline: none !important;
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Custom button hover states */
+        #voice-button:hover {
+            color: #EA4335;
+        }
+        
+        #attachment-button:hover {
+            color: #FBBC05;
+        }
+        
+        #send-button:hover {
+            background-color: #3367d6;
+        }
+        
+        /* Icon styles */
+        .fa-robot {
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .fa-robot:hover {
+            transform: rotate(10deg);
+        }
+        
+        /* Google brand colors */
+        .google-blue {
+            color: #4285F4;
+        }
+        
+        .google-red {
+            color: #EA4335;
+        }
+        
+        .google-yellow {
+            color: #FBBC05;
+        }
+        
+        .google-green {
+            color: #34A853;
+        }
+        
+        /* Attachment preview styles */
+        #attachment-preview {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        #attachment-name {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        /* File input hidden but accessible */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Recording status styles */
+        #recording-status {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            #chatbot-window {
+                width: calc(100% - 2rem);
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+            
+            #voice-popup {
+                width: 85%;
+                max-width: 300px;
+            }
+        }
     }
 }

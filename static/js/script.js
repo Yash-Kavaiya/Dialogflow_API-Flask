@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chatbotIcon.classList.remove('hidden');
         // Also close voice popup if open
         voicePopup.classList.add('hidden');
+        voicePopupOverlay.classList.add('hidden');
     });
     
     // Minimize chat window
@@ -120,15 +121,28 @@ document.addEventListener('DOMContentLoaded', function() {
         chatbotIcon.classList.remove('hidden');
         // Also close voice popup if open
         voicePopup.classList.add('hidden');
+        voicePopupOverlay.classList.add('hidden');
     });
     
     // Open voice popup
     voiceButton.addEventListener('click', function() {
         voicePopup.classList.remove('hidden');
+        voicePopupOverlay.classList.remove('hidden');
         chatInput.blur(); // Remove focus from text input
         
         // Reset the voice UI when opening
         resetVoiceUI();
+        
+        // Add recording status if it doesn't exist
+        if (!document.getElementById('recording-status')) {
+            const statusElement = document.createElement('div');
+            statusElement.id = 'recording-status';
+            statusElement.classList.add('text-center', 'text-sm', 'text-gray-600', 'mt-2');
+            statusElement.textContent = 'Click the microphone to start recording';
+            voicePopup.appendChild(statusElement);
+        } else {
+            document.getElementById('recording-status').textContent = 'Click the microphone to start recording';
+        }
         
         // Focus on start recording button for better accessibility
         setTimeout(() => {
@@ -156,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close voice popup and handle cleanup
     function closeVoicePopupFunc() {
         voicePopup.classList.add('hidden');
+        voicePopupOverlay.classList.add('hidden');
         stopRecording();
         // Return focus to chat input
         setTimeout(() => {
@@ -200,19 +215,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     sendVoice.classList.remove('animate-pulse');
                     
                     // Update recording status
-                    recordingStatus.innerHTML = '<span class="text-google-red animate-pulse">●</span> Recording... speak now';
+                    if (recordingStatus) {
+                        recordingStatus.innerHTML = '<span class="text-google-red animate-pulse">●</span> Recording... speak now';
+                    }
                     
                     animateWaveform(true);
                     updateVoiceControls();
                 } catch (e) {
                     console.error('Error starting recognition', e);
-                    recordingStatus.innerHTML = '<span class="text-red-500">Error starting speech recognition. Please try again.</span>';
-                    setTimeout(() => {
-                        recordingStatus.textContent = 'Click the microphone to start recording';
-                    }, 3000);
+                    if (recordingStatus) {
+                        recordingStatus.innerHTML = '<span class="text-red-500">Error starting speech recognition. Please try again.</span>';
+                        setTimeout(() => {
+                            recordingStatus.textContent = 'Click the microphone to start recording';
+                        }, 3000);
+                    }
                 }
             } else {
-                recordingStatus.innerHTML = '<span class="text-red-500">Speech recognition is not supported in your browser.</span>';
+                if (recordingStatus) {
+                    recordingStatus.innerHTML = '<span class="text-red-500">Speech recognition is not supported in your browser.</span>';
+                }
             }
         } else {
             // Stop recording
@@ -227,7 +248,9 @@ document.addEventListener('DOMContentLoaded', function() {
             animateWaveform(false);
             updateVoiceControls();
             // Update status
-            recordingStatus.innerHTML = '<span class="text-yellow-500">⏸</span> Recording paused';
+            if (recordingStatus) {
+                recordingStatus.innerHTML = '<span class="text-yellow-500">⏸</span> Recording paused';
+            }
         }
     });
     
@@ -239,10 +262,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 animateWaveform(true);
                 updateVoiceControls();
                 // Update status
-                recordingStatus.innerHTML = '<span class="text-google-red animate-pulse">●</span> Recording resumed... speak now';
+                if (recordingStatus) {
+                    recordingStatus.innerHTML = '<span class="text-google-red animate-pulse">●</span> Recording resumed... speak now';
+                }
             } catch (e) {
                 console.error('Error resuming recognition', e);
-                recordingStatus.innerHTML = '<span class="text-red-500">Error resuming recording. Please try again.</span>';
+                if (recordingStatus) {
+                    recordingStatus.innerHTML = '<span class="text-red-500">Error resuming recording. Please try again.</span>';
+                }
             }
         }
     });
@@ -250,9 +277,9 @@ document.addEventListener('DOMContentLoaded', function() {
     resetRecording.addEventListener('click', function() {
         resetVoiceUI();
         // Play a subtle reset sound effect (optional)
-        const audio = new Audio('/static/sounds/reset.mp3');
-        audio.volume = 0.3;
-        audio.play().catch(e => console.log('Audio play prevented: ', e));
+        // const audio = new Audio('/static/sounds/reset.mp3');
+        // audio.volume = 0.3;
+        // audio.play().catch(e => console.log('Audio play prevented: ', e));
     });
     
     sendVoice.addEventListener('click', function() {
@@ -261,7 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show sending feedback
             sendVoice.disabled = true;
             sendVoice.classList.remove('animate-pulse');
-            recordingStatus.innerHTML = '<span class="text-google-green animate-pulse">↑</span> Sending message...';
+            if (recordingStatus) {
+                recordingStatus.innerHTML = '<span class="text-google-green animate-pulse">↑</span> Sending message...';
+            }
             
             // Briefly show sending animation before closing
             setTimeout(() => {
@@ -271,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Clear input and close popup
                 transcriptionResult.innerHTML = '';
                 voicePopup.classList.add('hidden');
+                voicePopupOverlay.classList.add('hidden');
                 stopRecording();
                 resetVoiceUI();
                 
@@ -497,10 +527,12 @@ document.addEventListener('DOMContentLoaded', function() {
             animateWaveform(false);
             
             // Update status based on whether we have transcription
-            if (transcriptionResult.textContent.trim() !== '') {
-                recordingStatus.innerHTML = '<span class="text-google-blue">✓</span> Recording complete. You can send or reset.';
-            } else {
-                recordingStatus.textContent = 'Recording stopped. Click microphone to try again.';
+            if (recordingStatus) {
+                if (transcriptionResult.textContent.trim() !== '') {
+                    recordingStatus.innerHTML = '<span class="text-google-blue">✓</span> Recording complete. You can send or reset.';
+                } else {
+                    recordingStatus.textContent = 'Recording stopped. Click microphone to try again.';
+                }
             }
             
             updateVoiceControls();
@@ -519,7 +551,9 @@ document.addEventListener('DOMContentLoaded', function() {
         startRecording.querySelector('i').className = 'fas fa-microphone';
         
         // Reset the status message
-        recordingStatus.textContent = 'Click the microphone to start recording';
+        if (recordingStatus) {
+            recordingStatus.textContent = 'Click the microphone to start recording';
+        }
         
         // Reset waveform
         waveformPath.setAttribute('d', 'M0,30 Q25,30 50,30 T100,30 T150,30 T200,30 T250,30 T300,30');
