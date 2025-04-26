@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Google Assistant</title>
+    <title>Advanced Google Assistant | Yash Kavaiya</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
@@ -90,6 +90,35 @@
             border-width: 0;
         }
         
+        /* Additional styles for header, hero, and footer */
+        .hero-gradient {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+        }
+        
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .twitter:hover {
+            color: #1DA1F2;
+        }
+        
+        .linkedin:hover {
+            color: #0A66C2;
+        }
+        
+        .github:hover {
+            color: #333;
+        }
+        
+        .aspecta:hover {
+            color: #FF6B6B;
+        }
+        
         /* Responsive adjustments for chat window */
         @media (max-width: 868px) {
             #chatbot-window {
@@ -111,171 +140,477 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center text-google-blue mb-8">
-            <i class="fab fa-google mr-2"></i>Google Assistant
-        </h1>
-        
-        <!-- Main content area -->
-        <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <p class="text-gray-700 mb-8">
-                Welcome! Our advanced Google Assistant is here to help you. Click on the chat icon in the bottom-right corner to start a conversation.
-            </p>
-            
-            <!-- Add your page content here -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h2 class="text-xl font-semibold text-google-blue mb-2">Features</h2>
-                    <ul class="list-disc ml-5 text-gray-700">
-                        <li>24/7 Virtual Assistant</li>
-                        <li>Voice Input Support</li>
-                        <li>File Attachment Capability</li>
-                        <li>Smart Responses</li>
-                    </ul>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fab fa-google text-google-blue text-3xl mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">Dialogflow API - Flask</span>
                 </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <h2 class="text-xl font-semibold text-google-blue mb-2">How to Use</h2>
-                    <ul class="list-disc ml-5 text-gray-700">
-                        <li><i class="fas fa-microphone text-google-red"></i> Click the microphone to use voice input</li>
-                        <li><i class="fas fa-paperclip text-google-yellow"></i> Send files and images</li>
-                        <li><i class="fas fa-paper-plane text-google-blue"></i> Send text messages</li>
-                        <li><i class="fas fa-robot text-google-green"></i> Get intelligent responses</li>
-                    </ul>
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-google-blue font-medium">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-google-blue font-medium">Features</a>
+                    <a href="#about" class="text-gray-700 hover:text-google-blue font-medium">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-google-blue font-medium">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <!-- Chatbot Icon Button -->
-        <div id="chatbot-icon" class="fixed bottom-8 right-8 w-20 h-20 bg-google-blue rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:bg-blue-600 transition-colors duration-300">
-            <i class="fas fa-comment-dots text-white text-2xl"></i>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Google Assistant Integration</h1>
+                    <p class="text-xl mb-8">Experience the power of conversational AI with our advanced Google Assistant implementation</p>
+                    <div class="flex space-x-4">
+                        <a href="#features" class="bg-white text-google-blue px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-300">
+                            Explore Features
+                        </a>
+                        <a href="#contact" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-google-blue transition-colors duration-300">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="w-64 h-64 bg-white rounded-full shadow-lg flex items-center justify-center">
+                        <i class="fas fa-robot text-google-blue text-6xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-grow">
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-google-blue mb-12">
+                    <i class="fab fa-google mr-2"></i>Google Assistant Features
+                </h2>
+                
+                <!-- Main content area -->
+                <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-gray-700 mb-8 text-center">
+                        Welcome! Our advanced Google Assistant is here to help you. Click on the chat icon in the bottom-right corner to start a conversation.
+                    </p>
+                    
+                    <!-- Features grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                            <div class="text-google-blue text-2xl mb-4">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h2 class="text-xl font-semibold text-google-blue mb-2">Features</h2>
+                            <ul class="list-disc ml-5 text-gray-700">
+                                <li>24/7 Virtual Assistant</li>
+                                <li>Voice Input Support</li>
+                                <li>File Attachment Capability</li>
+                                <li>Smart Responses</li>
+                                <li>Dialogflow Integration</li>
+                                <li>Multi-platform Support</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                            <div class="text-google-green text-2xl mb-4">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h2 class="text-xl font-semibold text-google-blue mb-2">How to Use</h2>
+                            <ul class="list-disc ml-5 text-gray-700">
+                                <li><i class="fas fa-microphone text-google-red"></i> Click the microphone to use voice input</li>
+                                <li><i class="fas fa-paperclip text-google-yellow"></i> Send files and images</li>
+                                <li><i class="fas fa-paper-plane text-google-blue"></i> Send text messages</li>
+                                <li><i class="fas fa-robot text-google-green"></i> Get intelligent responses</li>
+                                <li><i class="fas fa-code text-gray-700"></i> Easy integration with your applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-google-blue mb-12">About This Project</h2>
+                
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                            <div class="w-48 h-48 rounded-full bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-user text-google-blue text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 md:pl-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Yash Kavaiya</h3>
+                            <p class="text-gray-700 mb-4">
+                                I'm a developer passionate about AI and conversational interfaces. This project showcases 
+                                the integration of Google's Dialogflow with a Flask backend to create a powerful 
+                                chatbot experience.
+                            </p>
+                            <p class="text-gray-700 mb-6">
+                                The application features voice recognition, file uploads, and smart responses powered 
+                                by natural language processing.
+                            </p>
+                            
+                            <div class="flex space-x-4">
+                                <a href="https://twitter.com/Yash_Kavaiya_" target="_blank" rel="noopener" 
+                                   class="text-gray-500 hover:text-[#1DA1F2] transition-colors duration-300">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/yashkavaiya/" target="_blank" rel="noopener" 
+                                   class="text-gray-500 hover:text-[#0A66C2] transition-colors duration-300">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="https://github.com/Yash-Kavaiya" target="_blank" rel="noopener" 
+                                   class="text-gray-500 hover:text-gray-800 transition-colors duration-300">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="https://aspecta.ai/u/Yash-Kavaiya" target="_blank" rel="noopener" 
+                                   class="text-gray-500 hover:text-[#FF6B6B] transition-colors duration-300">
+                                    <i class="fas fa-globe text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-google-blue mb-8">Support My Work</h2>
+                
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="text-gray-700 mb-8">
+                        If you find this project helpful or interesting, consider supporting my work. Your contributions 
+                        help me continue creating open-source projects and tutorials.
+                    </p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md inline-block">
+                        <h3 class="text-xl font-semibold text-google-green mb-3">UPI Payment</h3>
+                        <div class="bg-white p-4 rounded border-2 border-google-green mb-4">
+                            <p class="text-lg font-mono select-all">9586551131@ybl</p>
+                        </div>
+                        <button class="bg-google-green text-white px-6 py-3 rounded-lg font-medium hover:bg-green-600 transition-colors duration-300">
+                            <i class="fas fa-copy mr-2"></i>Copy UPI ID
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-google-blue mb-12">Get in Touch</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-google-blue mb-4">Contact Information</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="text-google-blue mr-3 mt-1">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Email</h4>
+                                        <p class="text-gray-700">contact@yashkavaiya.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-google-red mr-3 mt-1">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Phone</h4>
+                                        <p class="text-gray-700">+91 9586551131</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-google-yellow mr-3 mt-1">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Location</h4>
+                                        <p class="text-gray-700">Gujarat, India</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <h4 class="font-medium mb-2">Follow Me</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="https://twitter.com/Yash_Kavaiya_" target="_blank" rel="noopener" 
+                                           class="social-icon twitter text-gray-500 hover:text-[#1DA1F2]">
+                                            <i class="fab fa-twitter text-2xl"></i>
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/yashkavaiya/" target="_blank" rel="noopener" 
+                                           class="social-icon linkedin text-gray-500 hover:text-[#0A66C2]">
+                                            <i class="fab fa-linkedin text-2xl"></i>
+                                        </a>
+                                        <a href="https://github.com/Yash-Kavaiya" target="_blank" rel="noopener" 
+                                           class="social-icon github text-gray-500 hover:text-gray-800">
+                                            <i class="fab fa-github text-2xl"></i>
+                                        </a>
+                                        <a href="https://aspecta.ai/u/Yash-Kavaiya" target="_blank" rel="noopener" 
+                                           class="social-icon aspecta text-gray-500 hover:text-[#FF6B6B]">
+                                            <i class="fas fa-globe text-2xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-google-blue mb-4">Send Me a Message</h3>
+                            
+                            <form>
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-google-blue">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-google-blue">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                    <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-google-blue"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="bg-google-blue text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors duration-300 w-full">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fab fa-google text-google-blue mr-2"></i> Dialogflow API
+                    </h3>
+                    <p class="text-gray-300">
+                        An advanced implementation of Google Assistant using Flask and Dialogflow for intuitive 
+                        conversational experiences.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#support" class="text-gray-300 hover:text-white transition-colors duration-300">Support</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://twitter.com/Yash_Kavaiya_" target="_blank" rel="noopener" 
+                           class="social-icon w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#1DA1F2]">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yashkavaiya/" target="_blank" rel="noopener" 
+                           class="social-icon w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#0A66C2]">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Yash-Kavaiya" target="_blank" rel="noopener" 
+                           class="social-icon w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-[#333]">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-300">
+                        Follow me on social media for updates on new projects and tutorials.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Support My Work</h3>
+                    <p class="text-gray-300 mb-3">
+                        If you find this project useful, consider supporting my work.
+                    </p>
+                    <div class="bg-gray-700 p-3 rounded flex items-center">
+                        <span class="bg-google-green text-white px-2 py-1 rounded mr-2">UPI</span>
+                        <span class="text-white font-mono text-sm">9586551131@ybl</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Yash Kavaiya. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Chatbot Icon Button -->
+    <div id="chatbot-icon" class="fixed bottom-8 right-8 w-20 h-20 bg-google-blue rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:bg-blue-600 transition-colors duration-300 z-50">
+        <i class="fas fa-comment-dots text-white text-2xl"></i>
+    </div>
+    
+    <!-- Chatbot Window (Hidden by default) -->
+    <div id="chatbot-window" class="fixed bottom-8 right-8 w-[800px] h-[700px] bg-white rounded-lg shadow-xl overflow-hidden hidden transition-all duration-300 z-50 flex flex-col">
+        <!-- Chat Header -->
+        <div class="bg-google-blue p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-3">
+                    <i class="fas fa-robot text-google-blue text-2xl"></i>
+                </div>
+                <span class="text-white font-medium text-xl">Google Assistant</span>
+            </div>
+            <div class="flex items-center">
+                <button id="minimize-chat" class="text-white hover:text-gray-200 mr-3">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button id="close-chat" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
         
-        <!-- Chatbot Window (Hidden by default) -->
-        <div id="chatbot-window" class="fixed bottom-8 right-8 w-[800px] h-[700px] bg-white rounded-lg shadow-xl overflow-hidden hidden transition-all duration-300 z-10 flex flex-col">
-            <!-- Chat Header -->
-            <div class="bg-google-blue p-6 flex justify-between items-center">
-                <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-3">
-                        <i class="fas fa-robot text-google-blue text-2xl"></i>
-                    </div>
-                    <span class="text-white font-medium text-xl">Google Assistant</span>
+        <!-- Chat Messages Container -->
+        <div id="chat-container" class="p-6 flex-1 overflow-y-auto bg-gray-50">
+            <div class="flex mb-4">
+                <div class="w-10 h-10 rounded-full bg-white border-2 border-google-blue flex items-center justify-center mr-3 flex-shrink-0">
+                    <i class="fas fa-robot text-google-blue text-lg"></i>
                 </div>
-                <div class="flex items-center">
-                    <button id="minimize-chat" class="text-white hover:text-gray-200 mr-3">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button id="close-chat" class="text-white hover:text-gray-200">
+                <div class="bg-white rounded-lg py-3 px-4 shadow-sm max-w-[80%]">
+                    <p class="text-base">Hi there! How can I help you today? You can type a message, use voice input, or send an attachment.</p>
+                </div>
+            </div>
+            <!-- More messages will be added here dynamically -->
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="border-t p-4">
+            <!-- Attachment Preview Area -->
+            <div id="attachment-preview" class="hidden mb-3 p-3 bg-gray-50 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-file-alt text-google-blue mr-2 text-lg"></i>
+                        <span id="attachment-name" class="text-base text-gray-600 truncate max-w-[250px]"></span>
+                    </div>
+                    <button id="remove-attachment" class="text-gray-500 hover:text-red-500 text-lg">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
             </div>
             
-            <!-- Chat Messages Container -->
-            <div id="chat-container" class="p-6 flex-1 overflow-y-auto bg-gray-50">
-                <div class="flex mb-4">
-                    <div class="w-10 h-10 rounded-full bg-white border-2 border-google-blue flex items-center justify-center mr-3 flex-shrink-0">
-                        <i class="fas fa-robot text-google-blue text-lg"></i>
-                    </div>
-                    <div class="bg-white rounded-lg py-3 px-4 shadow-sm max-w-[80%]">
-                        <p class="text-base">Hi there! How can I help you today? You can type a message, use voice input, or send an attachment.</p>
-                    </div>
-                </div>
-                <!-- More messages will be added here dynamically -->
-            </div>
-            
-            <!-- Chat Input -->
-            <div class="border-t p-4">
-                <!-- Attachment Preview Area -->
-                <div id="attachment-preview" class="hidden mb-3 p-3 bg-gray-50 rounded-lg">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <i class="fas fa-file-alt text-google-blue mr-2 text-lg"></i>
-                            <span id="attachment-name" class="text-base text-gray-600 truncate max-w-[250px]"></span>
-                        </div>
-                        <button id="remove-attachment" class="text-gray-500 hover:text-red-500 text-lg">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+            <!-- Input Controls -->
+            <div class="flex items-center">
+                <button id="attachment-button" class="text-gray-500 hover:text-google-yellow mx-3 text-xl">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <input type="file" id="file-input" class="visually-hidden">
+                
+                <div class="relative flex-1">
+                    <input id="chat-input" type="text" placeholder="Type a message..." class="w-full border rounded-full px-5 py-3 pr-12 text-base focus:outline-none focus:ring-2 focus:ring-google-blue">
                 </div>
                 
-                <!-- Input Controls -->
-                <div class="flex items-center">
-                    <button id="attachment-button" class="text-gray-500 hover:text-google-yellow mx-3 text-xl">
-                        <i class="fas fa-paperclip"></i>
-                    </button>
-                    <input type="file" id="file-input" class="visually-hidden">
-                    
-                    <div class="relative flex-1">
-                        <input id="chat-input" type="text" placeholder="Type a message..." class="w-full border rounded-full px-5 py-3 pr-12 text-base focus:outline-none focus:ring-2 focus:ring-google-blue">
-                    </div>
-                    
-                    <button id="voice-button" class="text-gray-500 hover:text-google-red mx-3 text-xl">
+                <button id="voice-button" class="text-gray-500 hover:text-google-red mx-3 text-xl">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                
+                <button id="send-button" class="bg-google-blue text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-blue-600 focus:outline-none ml-2">
+                    <i class="fas fa-paper-plane text-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Voice popup overlay (for better focus) -->
+        <div id="voice-popup-overlay" class="hidden absolute inset-0 bg-black bg-opacity-50 z-60"></div>
+        
+        <!-- Voice Recording Popup (Hidden by default) -->
+        <div id="voice-popup" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 bg-white rounded-lg shadow-xl p-4 hidden voice-popup z-70">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-medium text-google-blue">Voice Input</h3>
+                <button id="close-voice-popup" class="text-gray-500 hover:text-red-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Recording visualization -->
+            <div class="waveform-container mb-3">
+                <div id="waveform" class="waveform w-full">
+                    <!-- SVG waveform will be dynamically generated here -->
+                    <svg width="100%" height="60" viewBox="0 0 300 60" preserveAspectRatio="none">
+                        <path class="waveform-path" d="M0,30 Q25,10 50,30 T100,30 T150,30 T200,30 T250,30 T300,30" id="waveform-svg-path"></path>
+                    </svg>
+                </div>
+                <div id="recording-indicator" class="absolute flex items-center justify-center hidden">
+                    <div class="w-4 h-4 bg-google-red rounded-full recording-animation"></div>
+                </div>
+            </div>
+            
+            <!-- Transcription result -->
+            <div id="transcription-result" class="bg-gray-50 p-2 rounded mb-3 min-h-[40px] text-sm"></div>
+            
+            <!-- Control buttons -->
+            <div class="flex justify-between">
+                <div>
+                    <button id="start-recording" class="bg-google-red text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-600">
                         <i class="fas fa-microphone"></i>
                     </button>
-                    
-                    <button id="send-button" class="bg-google-blue text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-blue-600 focus:outline-none ml-2">
-                        <i class="fas fa-paper-plane text-lg"></i>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="pause-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="resume-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="reset-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
+                        <i class="fas fa-redo"></i>
                     </button>
                 </div>
-            </div>
-            
-            <!-- Voice popup overlay (for better focus) -->
-            <div id="voice-popup-overlay" class="hidden absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-            
-            <!-- Voice Recording Popup (Hidden by default) -->
-            <div id="voice-popup" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 bg-white rounded-lg shadow-xl p-4 hidden voice-popup z-20">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="font-medium text-google-blue">Voice Input</h3>
-                    <button id="close-voice-popup" class="text-gray-500 hover:text-red-500">
-                        <i class="fas fa-times"></i>
+                <div>
+                    <button id="send-voice" class="bg-google-blue text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-600 disabled:opacity-50" disabled>
+                        <i class="fas fa-paper-plane"></i>
                     </button>
-                </div>
-                
-                <!-- Recording visualization -->
-                <div class="waveform-container mb-3">
-                    <div id="waveform" class="waveform w-full">
-                        <!-- SVG waveform will be dynamically generated here -->
-                        <svg width="100%" height="60" viewBox="0 0 300 60" preserveAspectRatio="none">
-                            <path class="waveform-path" d="M0,30 Q25,10 50,30 T100,30 T150,30 T200,30 T250,30 T300,30" id="waveform-svg-path"></path>
-                        </svg>
-                    </div>
-                    <div id="recording-indicator" class="absolute flex items-center justify-center hidden">
-                        <div class="w-4 h-4 bg-google-red rounded-full recording-animation"></div>
-                    </div>
-                </div>
-                
-                <!-- Transcription result -->
-                <div id="transcription-result" class="bg-gray-50 p-2 rounded mb-3 min-h-[40px] text-sm"></div>
-                
-                <!-- Control buttons -->
-                <div class="flex justify-between">
-                    <div>
-                        <button id="start-recording" class="bg-google-red text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-600">
-                            <i class="fas fa-microphone"></i>
-                        </button>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button id="pause-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
-                            <i class="fas fa-pause"></i>
-                        </button>
-                        <button id="resume-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <button id="reset-recording" class="bg-gray-200 text-gray-700 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 disabled:opacity-50" disabled>
-                            <i class="fas fa-redo"></i>
-                        </button>
-                    </div>
-                    <div>
-                        <button id="send-voice" class="bg-google-blue text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-blue-600 disabled:opacity-50" disabled>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     
     <script src="/static/js/script.js"></script>
+    <script>
+        // Copy UPI ID functionality
+        document.querySelector('.bg-google-green').addEventListener('click', function() {
+            const upiId = '9586551131@ybl';
+            navigator.clipboard.writeText(upiId).then(function() {
+                this.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-copy mr-2"></i>Copy UPI ID';
+                }, 2000);
+            }.bind(this));
+        });
+    </script>
 </body>
 </html>
