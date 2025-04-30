@@ -35,7 +35,7 @@ A powerful web-based chatbot implementation that combines Google's Dialogflow ca
 
 You can test the live demo of this project [here](#) (link to be added).
 
-![Demo Screenshot](static/images/demo-screenshot.png)
+![Demo Screenshot](https://github.com/Yash-Kavaiya/Dialogflow_API-Flask/blob/main/Images/website.png)
 
 ## 💻 Installation
 
