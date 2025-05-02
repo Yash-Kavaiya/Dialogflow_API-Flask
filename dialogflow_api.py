@@ -16,7 +16,7 @@ def run_sample(texts,session_id):
     agent = f"projects/{project_id}/locations/{location_id}/agents/{agent_id}"
     # For more information on sessions see https://cloud.google.com/dialogflow/cx/docs/concept/session
     # For more supported languages see https://cloud.google.com/dialogflow/es/docs/reference/language
-    language_code = "en-us"
+    language_code = "en"
 
     res = detect_intent_texts(agent, session_id, texts, language_code)
     return res
