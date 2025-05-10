@@ -304,8 +304,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 stopRecording();
                 resetVoiceUI();
                 
-                // Process the message
-                processMessage(text);
+                // Process the message with voice input flag
+                processMessage(text, null, true);
                 
                 // Return focus to chat input
                 chatInput.focus();
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Process the message and get a response
-    function processMessage(message, fileData = null) {
+    function processMessage(message, fileData = null, isVoiceInput = false) {
         // Show typing indicator
         showTypingIndicator();
         
@@ -387,7 +387,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add bot response to chat
             setTimeout(() => {
                 addMessage('bot', data.response, 'text');
-            }, 500); // Small delay to make it feel more natural
+                
+                // If input was voice, use speech synthesis for response
+                if (isVoiceInput && 'speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(data.response);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 1.0;
+                    utterance.pitch = 1.0;
+                    window.speechSynthesis.speak(utterance);
+                }
+            }, 500);
         })
         .catch(error => {
             console.error('Error:', error);
